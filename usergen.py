@@ -15,11 +15,12 @@ def store_user_data(users):
     Args:
         users: a dictionary of Github users.
     """
-    filename = "./data/gitCU-users.json"
+    filename = "./data/gitCU-users.csv"
     
     with open(filename, 'ab') as f:
+        f.write(bytes("Username, Frequency\n", 'UTF-8'))
         for user, freq in users.items():
-            output = "Username:{: <30}".format(user) + " Frequency: " + str(freq) + "\n"
+            output = user + "," +  str(freq) + "\n"
             f.write(bytes(output, 'UTF-8'))
 
 def store_class_data(class_name, data):
