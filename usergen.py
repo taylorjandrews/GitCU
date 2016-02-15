@@ -99,19 +99,21 @@ def record_users(users, user_dict):
     return user_dict
 
 def main():
-    class_list = ['1300', '2270', '2400', '3104', '3202', '3287', '3308', '3753', '4229', '4273', '4448']
+    class_list = ['1300', '2270', '2400', '3104', '3155', '3202', '3287', '3308', '3753', '4229', '4273', '4448', '4830']
     """class_list contains the following selected courses: 
         Computer Science 1: Starting Computing,
         Computer Science 2: Data Structures,
         Computer Systems,
         Algorithms,
+        Principles of Programming Languages,
         Introduction to Artificial Intelligence,
         Database and Information Systems,
         Software Development Methods and Tools,
         Operating Systems,
         Computer Graphics,
         Network Systems,
-        Object-Oriented Analysis and Design
+        Object-Oriented Analysis and Design,
+        Special Topics
     """
     
     user_dict = {}
