@@ -9,7 +9,9 @@ python3 setup.py
 
 ## Usage
 python3 usergen.py
+
 python3 repogen.py
+
 python3 commitgen.py
 
 ## Notes
