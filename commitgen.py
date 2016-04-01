@@ -1,6 +1,6 @@
 """GitCU Data Mining Project Spring 2016
    Created by: Taylor Andrews
-   Modified: 2016/03/24 
+   Modified: 2016/03/31 
 
    Script to generate commits from repositories.
 """
@@ -14,7 +14,7 @@ def get_commit_urls(data):
     """Given GitHub repository data for a user, fetch the commit urls.
 
     Args:
-        data: a json file containing repository information
+        data: a json file containing repository information.
 
     Returns:
         A list of commit urls to fetch more information about. 
@@ -28,6 +28,14 @@ def get_commit_urls(data):
     return commits
 
 def create_userdir(username):
+    """Given a username, create a directory in the commits folder.
+
+    Args:
+        username: the name of a GitHub user.
+
+    Returns:
+        The name of the directory created by this method. 
+    """
     dirname = './data/commits/' + username
     if not os.path.exists(dirname):
         os.makedirs(dirname)
@@ -35,6 +43,12 @@ def create_userdir(username):
     return dirname + '/'
 
 def fetch_commits(user, data):
+    """Given a user and a list of their commits, fetch information about these commits.
+
+    Args:
+        user: the name of a GitHub user.
+        data: list of GitHub commits.
+    """
     dirname = create_userdir(user)
 
     for commit in data:
