@@ -8,7 +8,9 @@ cd desired-directory
 python3 setup.py
 
 ## Usage
-python3 usergen
+python3 usergen.py
+python3 repogen.py
+python3 commitgen.py
 
 ## Notes
-Make sure to delete GitCU-users.csv between each run.
+Make sure to delete data for cleanup between runs.
