@@ -1,9 +1,9 @@
-# GitCU Data Mining Project Spring 2016
-# Created by: Taylor Andrews
-# Modified: 2016/02/11 
-#
-# Setup directories for the project.
+"""GitCU Data Mining Project Spring 2016
+   Created by: Taylor Andrews
+   Modified: 2016/03/31
 
+   Setup directories for the project.
+"""
 import os
 
 def main():
