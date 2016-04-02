@@ -14,5 +14,8 @@ python3 repogen.py
 
 python3 commitgen.py
 
+./analysis.sh
+
 ## Notes
 Make sure to delete data for cleanup between runs.
+Bash script automatically removes and remakes result-repo.csv every run
