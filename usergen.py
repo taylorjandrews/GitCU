@@ -54,11 +54,9 @@ def generate_repositories(classes):
         print("Mining CSCI{}...".format(c), end='', flush=True) 
         
         req_string = "https://api.github.com/search/repositories?q=csci+" + c + "&per_page=500"
-        r = requests.get(req_string).json()
+        r = requests.get(req_string, headers = {'Authorization': 'token 6ca2047ccbab4ad1a2f472e35e2e659c8861bfb7'}).json()
         store_class_data(c, r)
         repos.append(r)
-        
-        sleep(10)
         print("finished!!!")
 
     return repos
