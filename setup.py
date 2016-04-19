@@ -7,7 +7,7 @@
 import os
 
 def main():
-    required_directories = ['./data/classes', './data/repos', './data/commits']
+    required_directories = ['./data/classes', './data/repos', './data/commits', './data/githubrepos']
 
     for d in required_directories:
         if not os.path.exists(d):

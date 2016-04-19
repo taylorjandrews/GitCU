@@ -37,7 +37,7 @@ def store_repositories(user, data):
 		user: a specific user to record information about.
 		data: json data about Github repositories.
 	"""
-	filename = "./data/repos/gitCU-user-" + user + ".json"
+	filename = "./data/githubrepos/github-user-" + user + ".json"
 	
 	with open(filename, 'wb') as f:
 		f.write(bytes(json.dumps(data, indent=2), 'UTF-8'))
@@ -45,15 +45,14 @@ def store_repositories(user, data):
 def main():
 	user_list = []
 
-	with open("./data/gitCU-users.csv") as f:
+	with open("./data/github-users.csv") as f:
 		reader = csv.reader(f)
-		next(reader) # Skip the first line
-		header = True;
+		# next(reader) # Skip the first line
+		# header = True;
 		for row in reader:
-			if(header):
-				header = False
-			else:
-				user_list.append(row[0])
+			# if(header):
+				# header = False
+			user_list.append(row[0])
 				
 	user_list = pydash.chain(user_list).uniq().sort().value()
 	
