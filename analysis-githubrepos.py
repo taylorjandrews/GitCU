@@ -34,6 +34,7 @@ def analysis(infile, outfile):
 	resultsfile.write(results)
 	openedfile.close()
 
+
 resultsfile = open('result-githubrepo.csv', 'a') # or 'a' to add text instead of truncate
 analysis(str(sys.argv[1]), resultsfile)
 resultsfile.close()
