@@ -90,16 +90,26 @@ def translate():
 
 	translated.close()
 	untranslated.close()
+def show_percentiles(attribute):
+	(gitresults, curesults) = grab_attribute_arrays(attribute) 
+	gitresults = list(map(int, gitresults))
+	curesults = list(map(int, curesults))
+	ranges = getranges(gitresults)
+	print(ranges)
+	bins = bin(curesults, ranges)
+	print("total number in percentiles", bins)
+	percbins = percentbins(bins, curesults)
+	print("percent of number in percentiles", percbins)
 
-attribute = input('attribute (repos, forked_from, forks, watchers, stars, avg_size): ')
-(gitresults, curesults) = grab_attribute_arrays(attribute) 
-gitresults = list(map(int, gitresults))
-curesults = list(map(int, curesults))
-
-ranges = getranges(gitresults)
-translate()
-print(ranges)
-bins = bin(curesults, ranges)
-print("total number in percentiles", bins)
-percbins = percentbins(bins, curesults)
-print("percent of number in percentiles", percbins)
+choice = "0"
+while(choice != "3"):
+	choice = input('press 1 to write new translation, 2 to search for the percentiles of an attribute, 3 to exit: ')
+	if(choice == "1"):
+		translate()
+	elif(choice == "2"):
+		attribute = input('attribute (repos, forked_from, forks, watchers, stars, avg_size): ')
+		show_percentiles(attribute)
+	elif(choice == "3"):
+		exit(0)
+	else:
+		print("please input a correct option\n")
