@@ -1,6 +1,7 @@
 import sys
 import csv
 import numpy
+import matplotlib.pyplot as plt
 
 def grab_index(attribute, openedfile):
 	reader = csv.reader(openedfile)
@@ -90,6 +91,7 @@ def translate():
 
 	translated.close()
 	untranslated.close()
+
 def show_percentiles(attribute):
 	(gitresults, curesults) = grab_attribute_arrays(attribute) 
 	gitresults = list(map(int, gitresults))
@@ -101,15 +103,34 @@ def show_percentiles(attribute):
 	percbins = percentbins(bins, curesults)
 	print("percent of number in percentiles", percbins)
 
+def histogram_plot(attribute, dataset):
+	(gitatt, cuatt) = grab_attribute_arrays(attribute)
+	if(dataset == "github"):
+		dataset = gitatt
+	elif(dataset == "cu"):
+		dataset = cuatt
+	dataset = list(map(int, dataset))
+	plt.hist(dataset, bins=range(0, max(dataset)+1))
+	plt.title("")
+	plt.xlabel("Value")
+	plt.ylabel("Frequency")
+	plt.show()
+
+
+
 choice = "0"
-while(choice != "3"):
-	choice = input('press 1 to write new translation, 2 to search for the percentiles of an attribute, 3 to exit: ')
+while(True):
+	choice = input('press 1 to write new translation, 2 to search for the percentiles of an attribute, 3 to plot a histogram, 4 to exit: ')
 	if(choice == "1"):
 		translate()
 	elif(choice == "2"):
 		attribute = input('attribute (repos, forked_from, forks, watchers, stars, avg_size): ')
 		show_percentiles(attribute)
 	elif(choice == "3"):
+		attribute = input('attribute (repos, forked_from, forks, watchers, stars, avg_size): ')
+		dataset = input('github or cu: ')
+		histogram_plot(attribute, dataset)
+	elif(choice == "4"):
 		exit(0)
 	else:
 		print("please input a correct option\n")
