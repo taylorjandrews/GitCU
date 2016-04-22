@@ -1,6 +1,7 @@
 import sys
 import csv
 import numpy
+import pydash
 import matplotlib.pyplot as plt
 
 def grab_index(attribute, openedfile):
@@ -103,20 +104,27 @@ def show_percentiles(attribute):
 	percbins = percentbins(bins, curesults)
 	print("percent of number in percentiles", percbins)
 
-def histogram_plot(attribute, dataset):
+def histogram_plot(attribute, datachoice):
 	(gitatt, cuatt) = grab_attribute_arrays(attribute)
-	if(dataset == "github"):
+	if(datachoice == "github"):
 		dataset = gitatt
-	elif(dataset == "cu"):
+	elif(datachoice == "cu"):
 		dataset = cuatt
 	dataset = list(map(int, dataset))
+	dataset = outlier_filter(dataset)
 	plt.hist(dataset, bins=range(0, max(dataset)+1))
-	plt.title("")
-	plt.xlabel("Value")
-	plt.ylabel("Frequency")
+	plt.title("Distribution of " + attribute + " among " +  datachoice + " users")
+	plt.xlabel("# of " + attribute)
+	plt.ylabel("# of users")
 	plt.show()
 
-
+def outlier_filter(arr):
+	q1, q3 = numpy.percentile(arr, [25, 75])
+	iqr = q3 - q1
+	maxbound = q3 + (iqr*1.5)
+	minbound = q1 - (iqr*1.5)
+	filtered = pydash.chain(arr).filter_(lambda x: x < maxbound).filter_(lambda x: x > minbound).value()
+	return filtered
 
 choice = "0"
 while(True):
