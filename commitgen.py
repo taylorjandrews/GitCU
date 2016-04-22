@@ -50,15 +50,17 @@ def fetch_commits(user, data):
         data: list of GitHub commits.
     """
     dirname = create_userdir(user)
-
+    counter = 0
     for commit in data:
         url = commit.split('/')[5]
         print("Mining {}/{}...".format(user, url), end='', flush=True) 
-
-        r = requests.get(commit.split('{')[0]).json()
+        if(counter == 4950):
+            sleep(3600)
+            counter = 0
+            
+        r = requests.get(commit.split('{')[0], headers = {'Authorization': 'token 6ca2047ccbab4ad1a2f472e35e2e659c8861bfb7'}).json()
         store_commit(dirname, url, r)
-
-        sleep(60)
+        counter = counter + 1
         print("finished!!!")
 
 
