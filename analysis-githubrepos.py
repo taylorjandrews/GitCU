@@ -14,7 +14,7 @@ def analysis(infile, outfile):
 	repos = len(data)
 	sizes = pydash.chain(data).filter_(lambda x: x['size'] != None).pluck('size').value()
 	if(len(sizes)>0):
-		avg_size = float(sum(sizes))/float(len(sizes))
+		avg_size = int(sum(sizes)/len(sizes))
 	else:
 		avg_size = 0
 	languages = pydash.chain(data).filter_(lambda x: x['language'] != None).sort_by('language').pluck('language').value()

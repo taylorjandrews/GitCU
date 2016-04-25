@@ -112,7 +112,10 @@ def histogram_plot(attribute, datachoice):
 		dataset = cuatt
 	dataset = list(map(int, dataset))
 	dataset = outlier_filter(dataset)
-	plt.hist(dataset, bins=range(0, max(dataset)+1))
+	if(attribute != "avg_size"):
+		plt.hist(dataset, bins=range(0, max(dataset)+1))
+	else:
+		plt.hist(dataset)
 	plt.title("Distribution of " + attribute + " among " +  datachoice + " users")
 	plt.xlabel("# of " + attribute)
 	plt.ylabel("# of users")
@@ -121,8 +124,8 @@ def histogram_plot(attribute, datachoice):
 def outlier_filter(arr):
 	q1, q3 = numpy.percentile(arr, [25, 75])
 	iqr = q3 - q1
-	maxbound = q3 + (iqr*1.5)
-	minbound = q1 - (iqr*1.5)
+	maxbound = q3 + (iqr*2)
+	minbound = q1 - (iqr*2)
 	filtered = pydash.chain(arr).filter_(lambda x: x < maxbound).filter_(lambda x: x > minbound).value()
 	return filtered
 

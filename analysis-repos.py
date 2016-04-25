@@ -13,7 +13,7 @@ def analysis(infile, outfile):
 
 	repos = len(data)
 	sizes = pydash.chain(data).filter_(lambda x: x['size'] != None).pluck('size').value()
-	avg_size = float(sum(sizes))/float(len(sizes))
+	avg_size = int(sum(sizes)/len(sizes))
 	languages = pydash.chain(data).filter_(lambda x: x['language'] != None).sort_by('language').pluck('language').value()
 	stars = pydash.chain(data).filter_(lambda x: x['stargazers_count'] != None).pluck('stargazers_count').sum().value()
 	watchers = pydash.chain(data).filter_(lambda x: x['watchers'] != None).pluck('watchers').sum().value()

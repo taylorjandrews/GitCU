@@ -45,7 +45,7 @@ def store_repositories(user, data):
 def main():
 	user_list = []
 
-	with open("./data/gitCU-users.csv") as f:
+	with open("./data/gitCU-users.txt") as f:
 		reader = csv.reader(f)
 		next(reader) # Skip the first line
 		header = True;
